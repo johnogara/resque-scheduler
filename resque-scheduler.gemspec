@@ -17,8 +17,42 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.add_development_dependency "bundler", ">= 1.0.0"
 
-  s.files        = `git ls-files`.split("\n")
-  s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
+  files          =<<END
+  Gemfile
+HISTORY.md
+LICENSE
+README.markdown
+Rakefile
+lib/resque/scheduler.rb
+lib/resque/scheduler/lock.rb
+lib/resque/scheduler/lock/base.rb
+lib/resque/scheduler/lock/basic.rb
+lib/resque/scheduler/lock/resilient.rb
+lib/resque/scheduler_locking.rb
+lib/resque_scheduler.rb
+lib/resque_scheduler/plugin.rb
+lib/resque_scheduler/server.rb
+lib/resque_scheduler/server/views/delayed.erb
+lib/resque_scheduler/server/views/delayed_timestamp.erb
+lib/resque_scheduler/server/views/scheduler.erb
+lib/resque_scheduler/tasks.rb
+lib/resque_scheduler/version.rb
+resque-scheduler.gemspec
+tasks/resque_scheduler.rake
+test/delayed_queue_test.rb
+test/redis-test.conf
+test/resque-web_test.rb
+test/scheduler_args_test.rb
+test/scheduler_hooks_test.rb
+test/scheduler_locking_test.rb
+test/scheduler_test.rb
+test/support/redis_instance.rb
+test/test_helper.rb
+END
+
+
+  s.files        = files.split("\n")
+  s.executables  = files.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
   s.require_path = 'lib'
 
   s.add_runtime_dependency(%q<redis>, [">= 2.0.1"])
